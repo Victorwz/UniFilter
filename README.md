@@ -1,6 +1,6 @@
 # UniFilter
 
-Offcial code for our work [Train a Unified Multimodal Data Quality Classifier with Synthetic Data]
+Official implementation of [Train a Unified Multimodal Data Quality Classifier with Synthetic Data]() accepted by EMNLP 2025 Findings.
 
 
 ## Release
