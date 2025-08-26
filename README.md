@@ -14,7 +14,7 @@ UniFilter is a Unified Multimodal Data Quality Classifier for High-Quality Multi
 
 This repo supports
  - synthetic data generation
- - UniFilter training-
+ - UniFilter training
  - quality score generation with [UniFilter-Qwen2.5-1.5B](https://huggingface.co/weizhiwang/UniFilter-Qwen2.5-1.5B).
 
 ## Installation
