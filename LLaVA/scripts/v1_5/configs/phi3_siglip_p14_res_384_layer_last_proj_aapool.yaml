@@ -1,0 +1,5 @@
+model:
+  vision_tower: google/siglip-so400m-patch14-384
+  mm_projector_type: aapool_mlp
+  mm_vision_select_layer: -1
+  mm_num_image_tokens: 256
