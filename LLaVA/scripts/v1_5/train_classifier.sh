@@ -1,12 +1,12 @@
-deepspeed --include=localhost:0,1,2,3,4,5,6,7 llava/train/train_classifier.py  \
-    --model_name_or_path Qwen/Qwen2.5-1.5B-Instruct \
+deepspeed --num_gpus=8 llava/train/train_classifier.py  \
+    --model_name_or_path Qwen/Qwen3-1.7B \
     --deepspeed ./scripts/zero3.json \
     --version v1 \
     --data_path /home/weizhi/data/unifilter_training_data/contrastive_data/interleaved_claude35/instructions/contrastive_caption_interleaved_joint_train_400k.json \
     --val_data_path /home/weizhi/data/unifilter_training_data/contrastive_data/interleaved_claude35/instructions/contrastive_caption_interleaved_joint_val_400k.json \
     --image_folder /home/weizhi/data/unifilter_training_data/ \
-    --vision_tower google/siglip-so400m-patch14-384 \
-    --pretrain_mm_mlp_adapter /mnt/raid5/weizhi/checkpoints/mlm-filter-llava-qwen-2.5-1.5b-instruct-pretrain-siglip-g-384-aapool-144/mm_projector.bin \
+    --vision_tower google/siglip2-so400m-patch14-384 \
+    --pretrain_mm_mlp_adapter /mnt/raid5/weizhi/checkpoints/llava-qwen-3-1.7b-pretrain-siglip2-384-aapool-144/mm_projector.bin \
     --mm_projector_type aapool_mlp \
     --mm_vision_select_layer -1 \
     --mm_use_im_start_end False \
@@ -15,7 +15,7 @@ deepspeed --include=localhost:0,1,2,3,4,5,6,7 llava/train/train_classifier.py  \
     --image_aspect_ratio pad \
     --group_by_modality_length False \
     --bf16 True \
-    --output_dir /mnt/data2/weizhi/checkpoints/unifilter_llava_qwen2.5_1.5b_instruct_caption_only_mse_loss_siglip_384_mmtoken_144_40k_data/ \
+    --output_dir /mnt/data2/weizhi/checkpoints/unifilter_llava_qwen3_1.7b_instruct_caption_interleaved_joint_mse_loss_siglip2_384_mmtoken_144_400k_data/ \
     --num_train_epochs 10 \
     --per_device_train_batch_size 32 \
     --per_device_eval_batch_size 16 \
@@ -28,12 +28,12 @@ deepspeed --include=localhost:0,1,2,3,4,5,6,7 llava/train/train_classifier.py  \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --tf32 True \
-    --model_max_length 4096 \
+    --model_max_length 8192 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
     --lazy_preprocess True \
     --report_to wandb  \
-    --run_name unifilter_llava_qwen2.5_1.5b_instruct_interleaved_only_mse_loss_siglip_384_mmtoken_144_40k_data \
+    --run_name unifilter_llava_qwen3_0.6b_instruct_caption_interleaved_joint_mse_loss_siglip2_384_mmtoken_144_400k_data \
     --load_best_model_at_end True \
     --metric_for_best_model "accuracy" \
     --save_total_limit 2 \

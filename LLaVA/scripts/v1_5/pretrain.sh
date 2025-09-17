@@ -1,8 +1,8 @@
 #!/bin/bash
 
-deepspeed --master_port 29501 --num_gpus=8 llava/train/train_mem.py \
+deepspeed --num_gpus=8 llava/train/train_mem.py \
     --deepspeed ./scripts/zero2.json \
-    --model_name_or_path Qwen/Qwen2.5-0.5B-Instruct \
+    --model_name_or_path Qwen/Qwen3-1.7B \
     --version plain \
     --data_path /mnt/raid5/weizhi/data/llava/images/LLaVA-Pretrain/blip_laion_cc_sbu_558k.json \
     --image_folder /mnt/raid5/weizhi/data/llava/images/llava/llava_pretrain/images/ \
@@ -14,12 +14,12 @@ deepspeed --master_port 29501 --num_gpus=8 llava/train/train_mem.py \
     --mm_use_im_patch_token False \
     --mm_num_image_tokens 144 \
     --bf16 True \
-    --output_dir /mnt/raid5/weizhi/checkpoints/lavia-qwen-2.5-instruct-pretrain-siglip2-384-aapool-144 \
+    --output_dir /mnt/raid5/weizhi/checkpoints/llava-qwen-3-1.7b-pretrain-siglip2-384-aapool-144 \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 32 \
+    --per_device_train_batch_size 64 \
     --per_device_eval_batch_size 4 \
-    --gradient_accumulation_steps 2 \
-    --evaluation_strategy "no" \
+    --gradient_accumulation_steps 1 \
+    --eval_strategy "no" \
     --save_strategy "steps" \
     --save_steps 24000 \
     --save_total_limit 1 \
@@ -29,7 +29,7 @@ deepspeed --master_port 29501 --num_gpus=8 llava/train/train_mem.py \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --tf32 True \
-    --model_max_length 2048 \
+    --model_max_length 4096 \
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
     --lazy_preprocess True \

@@ -1194,6 +1194,14 @@ def train(attn_implementation=None):
             )
         ))
 
+    tokenizer = transformers.AutoTokenizer.from_pretrained(
+        model_args.model_name_or_path,
+        cache_dir=training_args.cache_dir,
+        model_max_length=training_args.model_max_length,
+        padding_side="right",
+        use_fast=False,
+    )
+
     if model_args.vision_tower is not None:
         if 'mpt' in model_args.model_name_or_path:
             config = transformers.AutoConfig.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
@@ -1232,13 +1240,24 @@ def train(attn_implementation=None):
                 num_labels=model_args.num_labels,
                 **bnb_model_from_pretrained_args
             )
-        elif "qwen" in model_args.model_name_or_path.lower():
+        elif "qwen3" in model_args.model_name_or_path.lower():
+            model = LlavaQwen3Classifier.from_pretrained(
+                model_args.model_name_or_path,
+                cache_dir=training_args.cache_dir,
+                attn_implementation=attn_implementation,
+                torch_dtype=(torch.bfloat16 if training_args.bf16 else None),
+                num_labels=model_args.num_labels,
+                pad_token_id=tokenizer.pad_token_id,
+                **bnb_model_from_pretrained_args,
+            )
+        elif "qwen2.5" in model_args.model_name_or_path.lower():
             model = LlavaQwenClassifier.from_pretrained(
                 model_args.model_name_or_path,
                 cache_dir=training_args.cache_dir,
                 attn_implementation=attn_implementation,
                 torch_dtype=(torch.bfloat16 if training_args.bf16 else None),
                 num_labels=model_args.num_labels,
+                pad_token_id=tokenizer.pad_token_id,
                 **bnb_model_from_pretrained_args,
             )
         else:
@@ -1293,22 +1312,6 @@ def train(attn_implementation=None):
         rank0_print("Adding LoRA adapters...")
         model = get_peft_model(model, lora_config)
 
-    if 'mpt' in model_args.model_name_or_path:
-        tokenizer = transformers.AutoTokenizer.from_pretrained(
-            model_args.model_name_or_path,
-            cache_dir=training_args.cache_dir,
-            model_max_length=training_args.model_max_length,
-            padding_side="right"
-        )
-    else:
-        tokenizer = transformers.AutoTokenizer.from_pretrained(
-            model_args.model_name_or_path,
-            cache_dir=training_args.cache_dir,
-            model_max_length=training_args.model_max_length,
-            padding_side="right",
-            use_fast=False,
-        )
-
     if model_args.version == "v0":
         if tokenizer.pad_token is None:
             smart_tokenizer_and_embedding_resize(
@@ -1343,10 +1346,8 @@ def train(attn_implementation=None):
     elif "phi" in model_args.model_name_or_path.lower():
         tokenizer.pad_token = tokenizer.unk_token
     elif "qwen" in model_args.model_name_or_path.lower():
-        num_new_tokens = tokenizer.add_special_tokens(dict(pad_token="[PAD]"))
-        model.resize_token_embeddings(len(tokenizer))
-        model.config.pad_token_id = tokenizer.pad_token_id
-        tokenizer.bos_token_id = model.config.bos_token_id
+        tokenizer.add_special_tokens({"additional_special_tokens": ["<s>"]})
+        tokenizer.bos_token = "<s>"
     else:
         tokenizer.pad_token = tokenizer.unk_token
 

@@ -4,3 +4,4 @@ from .language_model.llava_mistral import LlavaMistralForCausalLM, LlavaMistralC
 from .language_model.llava_phi3 import LlavaPhi3Classifier, LlavaPhi3ForCausalLM, LlavaPhi3Config
 from .language_model.llava_gemma import LlavaGemmaClassifier, LlavaGemmaForCausalLM, LlavaGemmaConfig
 from .language_model.llava_qwen import LlavaQwenForCausalLM, LlavaQwenConfig, LlavaQwenClassifier
+from .language_model.llava_qwen3 import LlavaQwen3ForCausalLM, LlavaQwen3Config, LlavaQwen3Classifier
