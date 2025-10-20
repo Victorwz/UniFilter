@@ -2,13 +2,13 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2510.15162-df2a2a.svg?style=for-the-badge)](https://arxiv.org/abs/2510.15162)
 
-Official implementation of [Train a Unified Multimodal Data Quality Classifier with Synthetic Data]() accepted by EMNLP 2025 Findings.
+Official implementation of [Train a Unified Multimodal Data Quality Classifier with Synthetic Data](https://arxiv.org/abs/2510.15162) accepted by EMNLP 2025 Findings.
 
 
 ## Release
 <!-- - [3/31/2025] 🔥 We released all pre-training data in webdataset format at [Open-Qwen2VL-Data](https://huggingface.co/datasets/weizhiwang/Open-Qwen2VL-Data).
-- [3/31/2025] 🔥 We released the technical report for [**Open-Qwen2VL**](https://arxiv.org/abs/2504.00595). -->
-- [8/25/2025] 🔥 We released UniFilter model at [UniFilter-Qwen2.5-1.5B](https://huggingface.co/weizhiwang/UniFilter-Qwen2.5-1.5B). Empowered by a strong 1.5B LLM backbone, the UniFilter model achieves best inference speed on quality score generation and the classification accuracy.
+- [10/19/2025] 🔥 We released the paper for [**UniFilter**](https://arxiv.org/abs/2510.15162). -->
+- [10/19/2025] 🔥 We released UniFilter model at [UniFilter-Qwen2.5-1.5B](https://huggingface.co/weizhiwang/UniFilter-Qwen2.5-1.5B). Empowered by a strong 1.5B LLM backbone, the UniFilter model achieves best inference speed on quality score generation and the classification accuracy.
 
 
 ## Introduction
@@ -36,7 +36,7 @@ The synthetic data generation scrips are:
  - [claude_sonnet_interleaved_data_generation.py](data_prepare/interleaved_data_scripts/claude_sonnet_interleaved_data_generation.py)
 
 ## Data Preparation for UniFilter Training
-UniFilter is trained a large-scale set of (multimodal data example, quality score) pairs, which contains both caption data and interleaved document data. The synthetic multimodal example-score paired data are available at [UniFilter-Post-Train-Data]().
+UniFilter is trained a large-scale set of (multimodal data example, quality score) pairs, which contains both caption data and interleaved document data. The synthetic multimodal example-score paired data are available at [UniFilter-Post-Train-Data](https://huggingface.co/datasets/weizhiwang/unifilter_train_data).
 
 ## UniFilter Training
 We develop the UniFilter training and scoring codebase based on [LLaVA-Unified]() repo, which is adapted from LLaVA with the support for recent LLMs and Vision Encoders. 
