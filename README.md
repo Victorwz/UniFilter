@@ -1,5 +1,7 @@
 # UniFilter
 
+[![arXiv](https://img.shields.io/badge/arXiv-2510.15162-df2a2a.svg?style=for-the-badge)](https://arxiv.org/abs/2510.15162)
+
 Official implementation of [Train a Unified Multimodal Data Quality Classifier with Synthetic Data]() accepted by EMNLP 2025 Findings.
 
 
@@ -88,6 +90,17 @@ Parameters to note:
 - `--model-path`: path to the UniFilter model checkpoint
 - `--tar-file-path`: path to the webdataset image-text caption data or interleaved document data tars
 - `--tars-per-gpu`: the number of webdataset tars for a single-gpu to inference on
+
+## Citation
+
+Please cite our paper if you find this repository interesting or helpful:
+```bibtex
+@article{UniFilter,
+   title={Train a Unified Multimodal Data Quality Classifier with Synthetic Data},
+   author={Wang, Weizhi and Lin, Rongmei and Li, Shiyang and Lockard, Colin and Sarkhel, Ritesh and Lokegaonkar, Sanket and Shang, Jingbo and Yan, Xifeng and Zalmout, Nasser and Li, Xian},
+   journal={arXiv preprint arXiv:2510.15162},
+   year={2025}
+ }
 
 
 ## Acknowledgement
