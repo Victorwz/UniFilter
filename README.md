@@ -39,7 +39,7 @@ The synthetic data generation scrips are:
 UniFilter is trained a large-scale set of (multimodal data example, quality score) pairs, which contains both caption data and interleaved document data. The synthetic multimodal example-score paired data are available at [UniFilter-Post-Train-Data](https://huggingface.co/datasets/weizhiwang/unifilter_train_data).
 
 ## UniFilter Training
-We develop the UniFilter training and scoring codebase based on [LLaVA-Unified]() repo, which is adapted from LLaVA with the support for recent LLMs and Vision Encoders. 
+We develop the UniFilter training and scoring codebase based on [LLaVA-Unified](https://github.com/Victorwz/LLaVA-Unified) repo, which is adapted from LLaVA with the support for recent LLMs and Vision Encoders. 
 <!-- An additional [LlavaPhi3Classifier](LLaVA/llava/model/language_model/llava_phi3.py#235) class is customized as the model class for UniFilter. -->
 
 The architectural design of UniFilter contains three modules, the vision encoder, the visual projector, and the LLM Backbone. Different from a MLLM, the LLM Backbone does not have a language modeling head and we replace it with a score generation head. All these module parameters are specified with:
@@ -101,6 +101,7 @@ Please cite our paper if you find this repository interesting or helpful:
    journal={arXiv preprint arXiv:2510.15162},
    year={2025}
  }
+```
 
 
 ## Acknowledgement
