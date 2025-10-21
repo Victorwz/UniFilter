@@ -6,8 +6,8 @@ Official implementation of [Train a Unified Multimodal Data Quality Classifier w
 
 
 ## Release
-<!-- - [3/31/2025] 🔥 We released all pre-training data in webdataset format at [Open-Qwen2VL-Data](https://huggingface.co/datasets/weizhiwang/Open-Qwen2VL-Data).
-- [10/19/2025] 🔥 We released the paper for [**UniFilter**](https://arxiv.org/abs/2510.15162). -->
+- [10/21/2025] 🔥 We released UniFilter model at [UniFilter-Qwen3-0.6B](https://huggingface.co/weizhiwang/UniFilter-Qwen3-0.6B). It is constructed on Qwen3-0.6B and SigLIP-2, which achieves better classification performance with much less model parameters.
+- [10/19/2025] 🔥 We released the paper for [**UniFilter**](https://arxiv.org/abs/2510.15162).
 - [10/19/2025] 🔥 We released UniFilter model at [UniFilter-Qwen2.5-1.5B](https://huggingface.co/weizhiwang/UniFilter-Qwen2.5-1.5B). Empowered by a strong 1.5B LLM backbone, the UniFilter model achieves best inference speed on quality score generation and the classification accuracy.
 
 
